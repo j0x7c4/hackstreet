@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+function initialize() {
+  var myLatlng = new google.maps.LatLng(31,121);
+  var mapOptions = {
+    zoom: 4,
+    center: myLatlng
+  }
+  var my_positions_s=[];
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var my_positions = [];
+	my_positions[0]=25;
+	my_positions[1]=121;
+	my_positions[2]=31;
+	my_positions[3]=121;
+	var my_testLatlng;
+  for(var i=0;i<my_positions.length;i=i+2)
+  {
+  	my_testLatlng=new google.maps.LatLng(my_positions[i],my_positions[i+1]);
+  	my_positions_s.push(my_testLatlng);
+  }
+	//var my_testLatlng=new google.maps.LatLng(my_positions[0],my_positions[1])
+	var my_testLatlng2=new google.maps.LatLng(my_positions[2],my_positions[3]);
+	my_positions_s.push(my_testLatlng);
+	my_positions_s.push(my_testLatlng2);
+
+
+
+   var marker = new google.maps.Marker
+   ({
+    position: my_positions_s[0],
+    map: map,
+    title: 'Hello World'
+    })
+
+
+     var marker2 = new google.maps.Marker
+     ({
+      position: my_positions_s[1],
+      map: map,
+      title: 'Hello World'
+	  })
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
