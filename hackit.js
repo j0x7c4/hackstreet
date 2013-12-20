@@ -1,10 +1,16 @@
 $(".map").empty();
 $(".map").append("<div id=pano></div>");
 $("#pano").append("hackit");
-var url = "http://map.qq.com/api/js?v=2.exp&key=d84d6d83e0e51e481e50454ccbe8986b";
-$.getScript(url,function(data,status){
-    console.log(status);
-    var pano = new qq.maps.Panorama(document.getElementById('pano'), {
+//$("#pano").load("http://localhost/~jie/streetview/");
+    
+window.qq = window.qq || {};qq.maps = qq.maps || {};window.soso || (window.soso = qq);soso.maps || (soso.maps = qq.maps);
+var loadScriptTime = (new Date).getTime();
+qq.maps.__load = function (apiLoad) {
+        delete qq.maps.__load;
+        apiLoad(["http://open.map.qq.com/", "v2.0.10", "", 1387523864228, true, "d84d6d83e0e51e481e50454ccbe8986b", "20130701", "apifiles/v2/0/10/mods/", "apifiles/v2/0/10/theme/"],loadScriptTime);
+    };
+    
+    var pano = new window.qq.maps.Panorama(document.getElementById('pano'), {
         pano: '10051001111220105028000',
         disableMove: false,
         pov:{
@@ -18,11 +24,3 @@ $.getScript(url,function(data,status){
     pano_service.getPano(new qq.maps.LatLng(31.21533,121.42031), 100, function (result){
                 pano.setPano(result.svid);
             });
-    qq.maps.event.addListener(map, 'click', function (evt){
-            var point = evt.latLng;
-            var radius;
-            pano_service.getPano(point, 1000, function (result){
-                pano.setPano(result.svid);
-            });
-        });
-});

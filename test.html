@@ -11,31 +11,17 @@
      margin: 10px;
   }
   </style>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://open.map.qq.com/apifiles/v2/0/10/main.js"></script>
 </head>
 <body>
  
-<button id="go">&raquo; Run</button>
-<div class="block"></div>
- 
 <script>
-var url = "https://raw.github.com/jquery/jquery-color/master/jquery.color.js";
-$.getScript( url, function(a,b,c) {
-    console.log(a);
-    $( ".block" )
-      .animate({
-        backgroundColor: "rgb(255, 180, 180)"
-      }, 1000 )
-      .delay( 500 )
-      .animate({
-        backgroundColor: "olive"
-      }, 1000 )
-      .delay( 500 )
-      .animate({
-        backgroundColor: "#00f"
-      }, 1000 );
-  });
-
+window.qq = window.qq || {};qq.maps = qq.maps || {};window.soso || (window.soso = qq);soso.maps || (soso.maps = qq.maps);
+var loadScriptTime = (new Date).getTime();
+qq.maps.__load = function (apiLoad) {
+        delete qq.maps.__load;
+        apiLoad(["http://open.map.qq.com/", "v2.0.10", "", 1387523864228, true, "d84d6d83e0e51e481e50454ccbe8986b", "20130701", "apifiles/v2/0/10/mods/", "apifiles/v2/0/10/theme/"],loadScriptTime);
+    };
 </script>
  
 </body>

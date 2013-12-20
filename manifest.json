@@ -9,7 +9,8 @@
     "tabs", "http://www.dianping.com/shop/*"
   ],
   "web_accessible_resources" : [
-    "jquery-1.10.2.min.js"
+    "jquery-1.10.2.min.js",
+    "jquery-1.10.2.min.map"
   ],
   "background": { 
     "scripts": ["jquery-1.10.2.min.js","init.js"],
@@ -19,7 +20,7 @@
   {
     "matches":["http://www.dianping.com/shop/*"],
     "css":[],
-    "js":["jquery-1.10.2.min.js","hackit.js"]
+    "js":["jquery-1.10.2.min.js","main.js","hackit.js"]
   }
   ],
   "browser_action": {

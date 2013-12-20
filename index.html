@@ -42,13 +42,6 @@ var pano = new qq.maps.Panorama(document.getElementById('pano_holder'), {
         pano_service.getPano(new qq.maps.LatLng(31.21533,121.42031), 100, function (result){
                     pano.setPano(result.svid);
                 });
-        qq.maps.event.addListener(map, 'click', function (evt){
-                var point = evt.latLng;
-                var radius;
-                pano_service.getPano(point, 1000, function (result){
-                    pano.setPano(result.svid);
-                });
-            });
     };
 </script>
 </body>
