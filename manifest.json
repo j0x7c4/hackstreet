@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "Shop in Street",
+  "description": "Extend the original shop information at Dianping.com to show street view.",
+  "version": "1.0",
+
+  "permissions": [
+    "tabs", "http://www.dianping.com/shop/*"
+  ],
+  "web_accessible_resources" : [
+    "jquery-1.10.2.min.js"
+  ],
+  "background": { 
+    "scripts": ["jquery-1.10.2.min.js","init.js"],
+    "persistent": false
+  },
+  "content_scripts": [ 
+  {
+    "matches":["http://www.dianping.com/shop/*"],
+    "css":[],
+    "js":["jquery-1.10.2.min.js","hackit.js"]
+  }
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}
