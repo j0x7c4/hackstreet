@@ -13,6 +13,7 @@ function buildGoogleUrl(address) {
 
 $(".map").empty();
 $(".map").append("<div id=pano style='height:236px;width:236px;'></div>");
+$(".map-info").append("<a href=#>  Hack地图</a>");
 //$("#pano").load("http://localhost/~jie/streetview/");
     
 window.qq = window.qq || {};qq.maps = qq.maps || {};window.soso || (window.soso = qq);soso.maps || (soso.maps = qq.maps);
@@ -35,10 +36,10 @@ $.getJSON( googleUrl , function (data) {
             pano: pid,
             disableMove: false,
             pov:{
-                heading:20,
+                heading:100,
                 pitch:0
             },
-            zoom:3
+            zoom:1
         });
     },"text");
 });
