@@ -6,7 +6,13 @@
   "version": "1.0",
 
   "permissions": [
-    "contextMenus","tabs", "http://www.dianping.com/shop/*","http://sv.map.qq.com/*","http://m.dianping.com/*"
+    "contextMenus",
+    "tabs", 
+    "http://www.dianping.com/shop/*",
+    "http://sv.map.qq.com/*",
+    "http://m.dianping.com/*",
+    "https://maps.google.com/*",
+    "https://maps.googleapis.com/*"
   ],
   "web_accessible_resources" : [
     "jquery-1.10.2.min.js",
@@ -19,12 +25,14 @@
   "content_scripts": [ 
   {
     "matches":["http://www.dianping.com/shop/*"],
-    "css":[],
-    "js":["jquery-1.10.2.min.js","main.js","common.js","hackit.js"]
+    "css":["bootstrap.css"],
+    "js":["jquery-1.10.2.min.js","bootstrap.min.js","main.js","common.js","address.js","hackit.js"]
   }
   ],
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
-  }
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://; object-src 'self'"
+
 }
