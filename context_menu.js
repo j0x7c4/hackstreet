@@ -15,7 +15,7 @@ function writeToStorage(id,name,address,lat,lng){
   storage.setItem("shop"+id,JSON.stringify({"shopId":id,
     "shopName":name,
     "shopAddress":address,
-    "location":{"lat":lat,"lng":lng}}));
+    "shopLocation":{"lat":lat,"lng":lng}}));
 }
 // A generic onclick callback function.
 function addToFav(info, tab) {
