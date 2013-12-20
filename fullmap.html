@@ -42,7 +42,7 @@ function initialize()
 		
 		for(var i=0;i<my_positions_s.length;i++)
 		{
-			var image = 'markers.png';
+			var image = 'icon.png';
 			var infowindow = new google.maps.InfoWindow();
 		    var marker = new google.maps.Marker
 		    ({
@@ -61,17 +61,13 @@ function initialize()
 			    }
 			});
 
-			
+			google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				return function() {
+					infowindow.setContent("Loading");
+					infowindow.open(map, marker);
+				}
+			})(marker, i));
 
-		    google.maps.event.addListener(marker,'click',function()
-		    {
-
-		    	//??infowindow.setPosition( my_positions_s[i]);//定位
-		    	infowindow.setContent("Loading");
-
-		    	infowindow.open(map);
-		    	
-		    })
 		}
 
 
