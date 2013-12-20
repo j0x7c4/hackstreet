@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+		<meta charset="utf-8">
+		<title>address demo</title>
+		<script src="/jquery-1.10.2.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+		<script src="/address.js"></script>
+    <script type="text/javascript" src="/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/bootstrap.css" />
+	</head>
+	<body>
+		<div>
+			<div style="float:left;">
+				<input type="text" id="address" name="address"/>
+				<button id="add" class="btn">add</button>
+        <button id="show" class="btn">show</button>
+        <button id="hide" class="btn">hide</button>
+        <button id="clear" class="btn">clear</button>
+			</div>
+		</div>
+    <div id="modal-confirm" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="modal-label">提示</h3>
+      </div>
+      <div id="map-canvas" style="width:862px;height:500px;"></div>
+    </div>
+		<script>
+			
+      addStoreFromLocalStorage();
+			$('#add').click(function(){
+				var addressData = getAddress($('#address').val());
+				var shopLocation = getAddressLocation(addressData);
+        addStoreByLocation(storeSet.size(), 'wenbin store', $('#address').val(), shopLocation);
+        $('#address').val('');
+			});
+      $('#show').click(function(){
+        var shopList = storeSet.keys();
+        showStoreByList(shopList);
+      });
+      $('#hide').click(function(){
+        var shopList = storeSet.keys();
+        hideStoreByList(shopList);
+      });
+      $('#clear').click(function(){
+        $('#modal-confirm').modal({backdrop: 'static', keyboard: false});
+        initializeMap({lat: 31.2158, lng: 121.4205});
+        var shopList = storeSet.keys();
+        showStoreByList(shopList);
+        //google.maps.event.addDomListener(window, 'load', initialize);
+      });
+		</script>
+	</body>
+</html>
