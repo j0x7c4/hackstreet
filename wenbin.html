@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>address demo</title>
+    <script src="/jquery-1.10.2.min.js"></script>
+    <script src="/address.js"></script>
+  </head>
+  <body>
+    <input type="text" id="address" name="address"/>
+    <button id="go">&raquo; Run</button>
+    <div class="block"></div>
+    <script>
+      $(function(){
+        $('#go').click(function(){
+          var addressData = getAddress($('#address').val());
+          getAddressLocation(addressData);
+          //alert(JSON.stringify(addressData));
+        });
+      });
+    </script>
+  </body>
+</html>
