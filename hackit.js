@@ -8,7 +8,7 @@ function buildUrl(lat,lng) {
     return "http://sv.map.qq.com/xf?x="+x+"&y="+y+"&r=100";
 }
 function buildGoogleUrl(address) {
-    return "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=true"
+    return "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=true";
 }
 
 $(".map").empty();

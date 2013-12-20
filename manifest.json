@@ -6,15 +6,15 @@
   "version": "1.0",
 
   "permissions": [
-    "tabs", "http://www.dianping.com/shop/*","http://sv.map.qq.com/*"
+    "contextMenus","tabs", "http://www.dianping.com/shop/*","http://sv.map.qq.com/*","http://m.dianping.com/*"
   ],
   "web_accessible_resources" : [
     "jquery-1.10.2.min.js",
     "jquery-1.10.2.min.map"
   ],
   "background": { 
-    "scripts": ["jquery-1.10.2.min.js","init.js"],
-    "persistent": false
+    "scripts": ["jquery-1.10.2.min.js","context_menu.js"],
+    "persistent": true
   },
   "content_scripts": [ 
   {
