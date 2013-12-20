@@ -119,7 +119,8 @@ function addStoreFromLocalStorage() {
 	storeSet = new HashMap();
 	var ls = window.localStorage;
 	for (var key in ls) {
-		if (key != 'jfVersion') {
+		if ( key.match("^shop[0-9]+$") ) {
+		//if (key != 'jfVersion') {
 			var store = JSON.parse(ls[key]);
 			var marker = new google.maps.Marker({
 				position: store.shopLocation,
