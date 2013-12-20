@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+function initialize() 
+{
+
+	var markers=[];
+	var myLatlng = new google.maps.LatLng(31,121);
+	var mapOptions =
+	{
+		zoom: 4,
+		center: myLatlng
+    }
+	var my_positions_s=[];
+	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	var my_positions = [];
+	my_positions[0]=25;
+	my_positions[1]=121;
+	my_positions[2]=31;
+	my_positions[3]=121;
+	my_positions[4]=20;
+	my_positions[5]=121;
+	var my_testLatlng;
+		for(var i=0;i<my_positions.length-1;i=i+2)
+		{
+			my_testLatlng=new google.maps.LatLng(my_positions[i],my_positions[i+1]);
+			my_positions_s.push(my_testLatlng);
+		}
+		
+		for(var i=0;i<my_positions_s.length;i++)
+		{
+			var image = 'markers.png';
+			var infowindow = new google.maps.InfoWindow();
+		    var marker = new google.maps.Marker
+		    ({
+		    position: my_positions_s[i],
+		    map: map,
+		    title: 'Welcome',
+		    icon:image
+			});
+		    markers.push(marker);
+		    
+		    google.maps.event.addListener(marker, 'rightclick', function() 
+			{
+			    if(confirm("Delete It?"))//提示是否删除
+			    {
+			       this.setMap(null);
+			    }
+			});
+
+			
+
+		    google.maps.event.addListener(marker,'click',function()
+		    {
+
+		    	//??infowindow.setPosition( my_positions_s[i]);//定位
+		    	infowindow.setContent("Loading");
+
+		    	infowindow.open(map);
+		    	
+		    })
+		}
+
+
+
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
