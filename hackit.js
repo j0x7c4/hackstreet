@@ -10,6 +10,26 @@ function buildUrl(lat,lng) {
 function buildGoogleUrl(address) {
     return "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=true";
 }
+
+var UNIQUE_MAP_VIEWER_ID = 'crx_myextension_iframe'; 
+var latitude = -1;
+var longitude = -1;
+
+/**
+ * Here is where you want to render a latitude and longitude. We create an iframe so we
+ * we can inject it. We just want to maintain a single instance of it though.
+ */
+function onRenderMap() {
+  var mapViewerDOM = document.getElementById(UNIQUE_MAP_VIEWER_ID);
+  if (mapViewerDOM) {
+     mapViewerDOM.parentNode.removeChild(mapViewerDOM);
+  }
+
+  mapViewerDOM = document.createElement('iframe');
+
+  document.body.appendChild(mapViewerDOM);
+};
+
 $("body").append('<div id="modal-panel" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="modal-label">提示</h3></div><div id="map-canvas" style="width:862px;height:500px;"></div></div>');
 $(".map").empty();
 $(".map").append("<div id=pano style='height:236px;width:236px;'></div>");
