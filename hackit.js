@@ -47,7 +47,9 @@ qq.maps.__load = function (apiLoad) {
     delete qq.maps.__load;
     apiLoad(["http://open.map.qq.com/", "v2.0.10", "", 1387523864228, true, "d84d6d83e0e51e481e50454ccbe8986b", "20130701", "apifiles/v2/0/10/mods/", "apifiles/v2/0/10/theme/"],loadScriptTime);
 };
-
+windowUrl = window.location.href;
+shopid = windowUrl.match("/shop/([0-9]+)")[1];
+shopname = $(".shop-title").text();
 address = $("span[itemprop='locality region']").text()+$("span[itemprop='street-address']").text()
 console.log(address);
 googleUrl = buildGoogleUrl(address);
@@ -61,9 +63,15 @@ $.getJSON( googleUrl , function (data) {
             chrome.extension.sendMessage(
                 {
                     method:"setlocation",
-                    data:{
+                    data:
+                    {
+                      shopId:shopid,
+                      shopName:shopname,
+                      shopAddress:address,
+                      shopLocation:{
                         lat:lat,
                         lng:lng
+                      }
                     }
                 },
                 function(response) {
