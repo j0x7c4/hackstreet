@@ -65,11 +65,17 @@ var storeSet;
 
 function initializeMap() {
 	var storage = window.localStorage;
-	var shopLocation;
-	if (storage.getItem('location')===null) {
-		shopLocation = {lat: 31,lng : 121};
+	//var shopLocation;
+	var currentShop;
+	if (storage.getItem('currentShop')===null) {
+		currentShop = {
+			shopId: 0,
+			shopName: '',
+			shopAddress: '',
+			location: {lat: 31,lng : 121}
+		};
 	} else {
-		shopLocation = JSON.parse(storage['location']);
+		currentShop = JSON.parse(storage['currentShop']);
 	}
 	var mapOptions = {
 		zoom: 9,
@@ -78,10 +84,17 @@ function initializeMap() {
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 	var marker = new google.maps.Marker({
-		position: shopLocation,
+		position: currentShop.shopLocation,
 		map: map
 	});
-	
+
+	var shopList = storeSet.keys();
+	for (var i = 0; i < shopList.length; i ++) {
+		if (shopList[i] == currentShop.shopId) {
+			shopList.splice(i, 1);
+		}
+	}
+	showStoreByList(shopList);
 }
 
 function addStoreByLocation(shopId, shopName, shopAddress, shopLocation) {
