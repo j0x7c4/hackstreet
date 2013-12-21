@@ -91,7 +91,7 @@ function initializeMap() {
 
 	var shopList = storeSet.keys();
 	for (var i = 0; i < shopList.length; i ++) {
-		if (shopList[i] == currentShop.shopId) {
+		if (shopList[i] == ('shop' + currentShop.shopId)) {
 			shopList.splice(i, 1);
 		}
 	}
