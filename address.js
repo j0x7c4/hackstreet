@@ -82,10 +82,11 @@ function initializeMap() {
 		center: currentShop.shopLocation
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+	var image = 'markers.png';
 	var marker = new google.maps.Marker({
 		position: currentShop.shopLocation,
-		map: map
+		map: map,
+		icon:image
 	});
 
 	var shopList = storeSet.keys();
@@ -107,7 +108,7 @@ function addStoreByLocation(shopId, shopName, shopAddress, shopLocation) {
 	});
 	var marker = new google.maps.Marker({
 		position: shopLocation,
-		map: null
+		map: null,
 	});
 	storeSet.put(
 		'shop' + shopId, 
@@ -143,7 +144,8 @@ function addStoreFromLocalStorage() {
 			var store = JSON.parse(ls[key]);
 			var marker = new google.maps.Marker({
 				position: store.shopLocation,
-				map: null
+				map: null,
+				title: store.shopName
 			});
 			storeSet.put(
 				'shop' + store.shopId, 
