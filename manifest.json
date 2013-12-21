@@ -7,26 +7,28 @@
 
   "permissions": [
     "contextMenus",
-    "tabs", 
+    "tabs",
     "http://www.dianping.com/shop/*",
     "http://sv.map.qq.com/*",
-    "http://m.dianping.com/*",
     "https://maps.google.com/*",
     "https://maps.googleapis.com/*"
   ],
   "web_accessible_resources" : [
     "jquery-1.10.2.min.js",
-    "jquery-1.10.2.min.map"
+    "jquery-1.10.2.min.map",
+    "address.js",
+    "wenbin.html"
   ],
   "background": { 
-    "scripts": ["jquery-1.10.2.min.js","context_menu.js"],
+    "scripts": ["jquery-1.10.2.min.js","context_menu.js","background_api.js"],
     "persistent": true
   },
   "content_scripts": [ 
   {
     "matches":["http://www.dianping.com/shop/*"],
     "css":["bootstrap.css"],
-    "js":["jquery-1.10.2.min.js","bootstrap.min.js","main.js","common.js","address.js","hackit.js"]
+    "js":["jquery-1.10.2.min.js","bootstrap.min.js","main.js","common.js","address.js","hackit.js"],
+    "all_frames":true
   }
   ],
   "browser_action": {
@@ -34,5 +36,4 @@
     "default_popup": "popup.html"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://; object-src 'self'"
-
 }
