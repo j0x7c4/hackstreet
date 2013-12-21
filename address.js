@@ -72,14 +72,14 @@ function initializeMap() {
 			shopId: 0,
 			shopName: '',
 			shopAddress: '',
-			location: {lat: 31,lng : 121}
+			shopLocation: {lat: 31,lng : 121}
 		};
 	} else {
 		currentShop = JSON.parse(storage['currentShop']);
 	}
 	var mapOptions = {
 		zoom: 9,
-		center: shopLocation
+		center: currentShop.shopLocation
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
