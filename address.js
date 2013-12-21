@@ -63,18 +63,20 @@ var map;
 //var markers = [];
 var storeSet;
 
-function initializeMap(shopLocation) {
-	//var haightAshbury = new google.maps.LatLng(31.2158, );
+function initializeMap() {
+	var storage = window.localStorage;
+	var shopLocation;
+	if (storage.getItem('location')===null) {
+		shopLocation = {lat: 31,lng : 121};
+	}
+	else {
+		shopLocation = JSON.parse(storage['location']);
+	}
 	var mapOptions = {
 		zoom: 9,
 		center: shopLocation
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	/*
-		google.maps.event.addListener(map, 'click', function(event) {
-			addMarker(event.latLng);
-		});
-	*/
 }
 
 function addStoreByLocation(shopId, shopName, shopAddress, shopLocation) {
