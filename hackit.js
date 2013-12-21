@@ -28,13 +28,13 @@ function onRenderMap() {
   mapViewerDOM.setAttribute('id', UNIQUE_MAP_VIEWER_ID);
   mapViewerDOM.setAttribute('src', chrome.extension.getURL('wenbin.html'));
   mapViewerDOM.setAttribute('frameBorder', '0');
-  mapViewerDOM.setAttribute('width', '99.90%');
+  mapViewerDOM.setAttribute('width', '100%');
   mapViewerDOM.setAttribute('height', '100%');
   document.getElementById("map-canvas").appendChild(mapViewerDOM);
 }
 
 
-$("body").append('<div id="modal-panel" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="modal-label">提示</h3></div><div id="map-canvas" style="width:862px;height:500px;"></div></div>');
+$("body").append('<div id="modal-panel" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="modal-label">您收藏的商户</h3></div><div id="map-canvas" style="width:864px;height:500px;"></div></div>');
 $(".map").empty();
 $(".map").append("<div id=pano style='height:236px;width:236px;'></div>");
 $(".map-info").append("<a id=btn_map href=#>  Hack地图</a>");
