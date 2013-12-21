@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Shop in Street",
+  "name": "DP助手",
   "description": "Extend the original shop information at Dianping.com to show street view.",
   "version": "1.0",
-
+  "icons": { "128": "icon.png" },
   "permissions": [
     "contextMenus",
     "tabs",
