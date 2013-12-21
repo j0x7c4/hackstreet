@@ -82,7 +82,7 @@ function initializeMap() {
 		center: currentShop.shopLocation
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	var image = 'markers.png';
+	var image = 'marker_orange.png';
 	var marker = new google.maps.Marker({
 		position: currentShop.shopLocation,
 		map: map,
@@ -139,13 +139,15 @@ function hideStoreByList(storeList) {
 function addStoreFromLocalStorage() {
 	storeSet = new HashMap();
 	var ls = window.localStorage;
+		var image2 = 'marker_store.png';
 	for (var key in ls) {
 		if ( key.match("^shop[0-9]+$") ) {
 			var store = JSON.parse(ls[key]);
 			var marker = new google.maps.Marker({
 				position: store.shopLocation,
 				map: null,
-				title: store.shopName
+				title: store.shopName,
+				icon:image2
 			});
 			storeSet.put(
 				'shop' + store.shopId, 
