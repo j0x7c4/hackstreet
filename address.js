@@ -68,8 +68,7 @@ function initializeMap() {
 	var shopLocation;
 	if (storage.getItem('location')===null) {
 		shopLocation = {lat: 31,lng : 121};
-	}
-	else {
+	} else {
 		shopLocation = JSON.parse(storage['location']);
 	}
 	var mapOptions = {
@@ -77,6 +76,12 @@ function initializeMap() {
 		center: shopLocation
 	};
 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+	var marker = new google.maps.Marker({
+		position: shopLocation,
+		map: map
+	});
+	
 }
 
 function addStoreByLocation(shopId, shopName, shopAddress, shopLocation) {
