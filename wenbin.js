@@ -1,2 +1,1 @@
-addStoreFromLocalStorage();
 initializeMap(); 

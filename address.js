@@ -88,7 +88,20 @@ function initializeMap() {
 		map: map,
 		icon:image
 	});
-
+	var infowindow = new google.maps.InfoWindow();
+			google.maps.event.addListener(marker, 'click', (function(marker,currentShop) {
+				return function() {
+					infowindow.setContent(makeInfoContent(
+						{
+							name:currentShop.shopName,
+							address:currentShop.shopAddress,
+							url:"http://www.dianping.com/shop/"+currentShop.shopId
+						}
+						));
+					infowindow.open(map,marker);
+				};
+			})(marker,currentShop));
+	addStoreFromLocalStorage();
 	var shopList = storeSet.keys();
 	for (var i = 0; i < shopList.length; i ++) {
 		if (shopList[i] == ('shop' + currentShop.shopId)) {
@@ -98,31 +111,16 @@ function initializeMap() {
 	showStoreByList(shopList);
 }
 
-function addStoreByLocation(shopId, shopName, shopAddress, shopLocation) {
-	var ls = window.localStorage;
-	ls['shop' + shopId] = JSON.stringify({
-		shopId: shopId,
-		shopName: shopName,
-		shopAddress: shopAddress,
-		shopLocation: shopLocation
-	});
-	var marker = new google.maps.Marker({
-		position: shopLocation,
-		map: null,
-	});
-	storeSet.put(
-		'shop' + shopId, 
-		new Store(shopId, shopName, shopAddress, marker)
-	);
+function makeInfoContent ( content ) {
+	ret = "";
+	ret += "<div>名称:"+content.name+"</div>";
+	ret += "<div>地址:"+content.address+"</div>";
+	ret += "<div><a href=\""+content.url+"\" target=\"_blank\">去看看</a></div>";
+	return ret;
 }
-
-function addStoreByMarker(shopId, shopName, shopAddress, marker) {
-	
-}
-
 function showStoreByList(storeList) {
 	for (var i = 0; i < storeList.length; i ++) {
-		if (storeSet.get(storeList[i]).marker.getMap() == null) {
+		if (storeSet.get(storeList[i]).marker.getMap() === null) {
 			storeSet.get(storeList[i]).marker.setMap(map);
 		}
 	}
@@ -130,7 +128,7 @@ function showStoreByList(storeList) {
 
 function hideStoreByList(storeList) {
 	for (var i = 0; i < storeList.length; i ++) {
-		if (storeSet.get(storeList[i]).marker.getMap() != null) {
+		if (storeSet.get(storeList[i]).marker.getMap() !== null) {
 			storeSet.get(storeList[i]).marker.setMap(null);
 		}
 	}
@@ -149,20 +147,25 @@ function addStoreFromLocalStorage() {
 				title: store.shopName,
 				icon:image2
 			});
+			var infowindow = new google.maps.InfoWindow();
+			google.maps.event.addListener(marker, 'click', (function(marker,store) {
+				return function() {
+					infowindow.setContent(makeInfoContent(
+						{
+							name:store.shopName,
+							address:store.shopAddress,
+							url:"http://www.dianping.com/shop/"+store.shopId
+						}
+						));
+					infowindow.open(map,marker);
+				};
+			})(marker,store));
 			storeSet.put(
 				'shop' + store.shopId, 
 				new Store(store.shopId, store.shopName, store.shopAddress, marker)
 			);
 		}
 	}
-}
-
-function saveStoreToLocalStorage() {
-
-}
-
-function deleteStore() {
-
 }
 
 function deleteStoreByList(storeList) {
