@@ -39,6 +39,7 @@ function addToFav(info, tab) {
       lat = data.results[0].geometry.location.lat;
       lng = data.results[0].geometry.location.lng;
       writeToStorage(shopid,shopname,shopaddr,lat,lng);
+      
       alert(buildDpShopUrl(shopid)+'\n'+shopname+'\n'+shopaddr+'\n'+lat+','+lng);
     });
   },"html");
