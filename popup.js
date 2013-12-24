@@ -20,8 +20,11 @@
         for (var i in window.localStorage) {
           if (i.match("^shop[0-9]+$")) {
             var shop = JSON.parse(window.localStorage[i]);
-            var trHTML = "<tr id=ctl"+shop.shopId+"><td width='100px'>"+shop.shopName+"</td><td width='100px'>"+shop.shopAddress+"</td><td><div class='btn-group'><a id="+i+" href=# class='btn btn-default' >去点评</a><button id=del"+shop.shopId+" type='button' class='btn btn-default'>删除</button><button type='button' class='btn btn-default'>Right</button></div></td></tr>";
-            $("table").append(trHTML);//在table最后面添加一行
+            var liHTML = "<div class='row'>"+
+                          "<p><strong>"+shop.shopName+"</strong><i id="+i+" class=\"icon-search\"></i><i id=del"+shop.shopId+" class=\"icon-trash\"></i></br>"+
+                          "<small>"+shop.shopAddress+"</small></p>"+
+                            "</div>";
+            $("#settings").append(liHTML);//在table最后面添加一行
             $("#"+i).click(
               (function (shop) {
                 return function() {
