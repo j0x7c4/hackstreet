@@ -1,5 +1,5 @@
 function tg(a) {
-    a = Math.log(Math.tan(.008726646259971648 * (90 + a))) / .017453292519943295;
+    a = Math.log(Math.tan(0.008726646259971648 * (90 + a))) / 0.017453292519943295;
     return 111319.49077777778 * a;
 }
 function buildUrl(lat,lng) {
@@ -10,7 +10,7 @@ function buildUrl(lat,lng) {
 function buildGoogleUrl(address) {
     return "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=true";
 }
-var UNIQUE_MAP_VIEWER_ID = 'crx_myextension_iframe'; 
+var UNIQUE_MAP_VIEWER_ID = 'crx_myextension_iframe';
 var latitude = -1;
 var longitude = -1;
 
@@ -49,7 +49,7 @@ qq.maps.__load = function (apiLoad) {
 windowUrl = window.location.href;
 shopid = windowUrl.match("/shop/([0-9]+)")[1];
 shopname = $(".shop-title").text();
-address = $("span[itemprop='locality region']").text()+$("span[itemprop='street-address']").text()
+address = $("span[itemprop='locality region']").text()+$("span[itemprop='street-address']").text();
 console.log(address);
 googleUrl = buildGoogleUrl(address);
 $.getJSON( googleUrl , function (data) {

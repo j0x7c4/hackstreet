@@ -35,8 +35,10 @@
             $("#del"+shop.shopId).click(
               (function (shop) {
                 return function() {
-                  $("#fav"+shop.shopId).remove();
-                  remove(shop.shopId);
+                  $("#fav"+shop.shopId).slideUp("fast", function() {
+                    $("#fav"+shop.shopId).remove();
+                    remove(shop.shopId);
+                  });
                 };
               })(shop)
             );
