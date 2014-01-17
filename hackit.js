@@ -36,7 +36,7 @@ function onRenderMap() {
 $("body").append('<div id="modal-panel" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="modal-label" aria-hidden="true"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h3 id="modal-label">您收藏的商户</h3></div><div id="map-canvas" style="width:864px;height:500px;"></div></div>');
 $(".map").empty();
 $(".map").append("<div id=pano style='height:236px;width:236px;'></div>");
-$(".map-info").append("<a id=btn_map href=#>  Hack地图</a>");
+$("div.aside").prepend("<a id=btn_map href=#>  Hack地图</a>");
 
 
 //$("#pano").load("http://localhost/~jie/streetview/");
